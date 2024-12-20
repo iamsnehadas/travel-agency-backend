@@ -10,7 +10,14 @@ connectDB();
 
 const app = express();
 
-app.use(cors());
+// CORS Configuration
+const corsOptions = {
+  origin: ['https://travel-agency-frontend-eight.vercel.app/'], 
+  methods: ['GET', 'POST'],
+  credentials: true,
+};
+
+app.use(cors(corsOptions)); // Enable CORS with options
 app.use(express.json()); // Built-in middleware to parse JSON
 app.use(express.urlencoded({ extended: true })); // Built-in middleware to parse URL-encoded data
 
@@ -24,6 +31,7 @@ app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
 
+// Seed Data Route
 import Package from './models/Package.js';
 
 app.get('/api/seed', async (req, res) => {
