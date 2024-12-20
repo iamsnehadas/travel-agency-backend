@@ -32,15 +32,36 @@ app.get('/', (req, res) => {
 
 // Seed Data Route
 import Package from './models/Package.js';
+app.use('/images', express.static('public/images'));
 
 app.get('/api/seed', async (req, res) => {
   const samplePackages = [
-    { title: 'Beach Getaway', description: 'Relax at the beautiful sunny beach.', price: 200 },
-    { title: 'Mountain Adventure', description: 'Hiking and exploring the mountains.', price: 300 },
-    { title: 'City Tour', description: 'Explore vibrant city life.', price: 150 },
-    { title: 'Safari Expedition', description: 'Experience wildlife up close.', price: 400 },
-    { title: 'Cruise Voyage', description: 'Luxurious ocean travel.', price: 1000 },
+    {
+      title: 'Beach Getaway',
+      description: 'Relax at the beautiful sunny beach.',
+      price: 200,
+      image: 'https://travel-agency-backend-3yhw.onrender.com/images/beach.jpg',
+    },
+    {
+      title: 'Mountain Adventure',
+      description: 'Hiking and exploring the mountains.',
+      price: 300,
+      image: 'https://travel-agency-backend-3yhw.onrender.com/images/mountain.jpg',
+    },
+    {
+      title: 'City Tour',
+      description: 'Explore vibrant city life.',
+      price: 150,
+      image: 'https://travel-agency-backend-3yhw.onrender.com/images/city.jpg',
+    },
+    {
+      title: 'Safari Expedition',
+      description: 'Experience wildlife up close.',
+      price: 400,
+      image: 'https://travel-agency-backend-3yhw.onrender.com/images/safari.jpg',
+    },
   ];
+  
   try {
     await Package.deleteMany(); // Clear existing data
     const insertedPackages = await Package.insertMany(samplePackages);
