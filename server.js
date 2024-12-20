@@ -5,14 +5,14 @@ import packageRoutes from './routes/packageRoutes.js';
 import bookingRoutes from './routes/bookingRoutes.js';
 import cors from 'cors';
 
-dotenv.config();
-connectDB();
+dotenv.config(); // Load environment variables from .env file
+connectDB(); // Connect to MongoDB
 
 const app = express();
 
 // CORS Configuration
 const corsOptions = {
-  origin: ['https://travel-agency-frontend-eight.vercel.app/'], 
+  origin: ['https://travel-agency-frontend-eight.vercel.app'], 
   methods: ['GET', 'POST'],
   credentials: true,
 };
@@ -25,10 +25,9 @@ app.use(express.urlencoded({ extended: true })); // Built-in middleware to parse
 app.use('/api/packages', packageRoutes);
 app.use('/api/bookings', bookingRoutes);
 
-const PORT = process.env.PORT || 5000;
-
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+// Default Route for Render Root Path
+app.get('/', (req, res) => {
+  res.send('Travel Agency Backend is running...');
 });
 
 // Seed Data Route
@@ -39,6 +38,8 @@ app.get('/api/seed', async (req, res) => {
     { title: 'Beach Getaway', description: 'Relax at the beautiful sunny beach.', price: 200 },
     { title: 'Mountain Adventure', description: 'Hiking and exploring the mountains.', price: 300 },
     { title: 'City Tour', description: 'Explore vibrant city life.', price: 150 },
+    { title: 'Safari Expedition', description: 'Experience wildlife up close.', price: 400 },
+    { title: 'Cruise Voyage', description: 'Luxurious ocean travel.', price: 1000 },
   ];
   try {
     await Package.deleteMany(); // Clear existing data
@@ -47,4 +48,11 @@ app.get('/api/seed', async (req, res) => {
   } catch (error) {
     res.status(500).json({ message: 'Failed to seed data' });
   }
+});
+
+// Start the Server
+const PORT = process.env.PORT || 5000;
+
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
 });
