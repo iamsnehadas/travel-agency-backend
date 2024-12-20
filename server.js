@@ -60,7 +60,44 @@ app.get('/api/seed', async (req, res) => {
       price: 400,
       image: 'https://travel-agency-backend-3yhw.onrender.com/images/safari.jpg',
     },
+    {
+      title: 'Desert Escape',
+      description: 'Discover the beauty of endless sand dunes.',
+      price: 250,
+      image: 'https://travel-agency-backend-3yhw.onrender.com/images/desert.jpg',
+    },
+    {
+      title: 'Island Paradise',
+      description: 'Unwind on a remote island surrounded by crystal-clear waters.',
+      price: 500,
+      image: 'https://travel-agency-backend-3yhw.onrender.com/images/island.jpg',
+    },
+    {
+      title: 'Historical Journey',
+      description: 'Dive into the rich history of ancient landmarks.',
+      price: 350,
+      image: 'https://travel-agency-backend-3yhw.onrender.com/images/history.jpg',
+    },
+    {
+      title: 'Rainforest Retreat',
+      description: 'Immerse yourself in lush greenery and exotic wildlife.',
+      price: 450,
+      image: 'https://travel-agency-backend-3yhw.onrender.com/images/rainforest.jpg',
+    },
+    {
+      title: 'Tropical Escape',
+      description: 'Bask in the warmth of golden beaches and tropical vibes.',
+      price: 550,
+      image: 'https://travel-agency-backend-3yhw.onrender.com/images/tropical.jpg',
+    },    
+    {
+      title: 'Luxury Cruise',
+      description: 'Sail away in style on a world-class luxury cruise.',
+      price: 1000,
+      image: 'https://travel-agency-backend-3yhw.onrender.com/images/cruise.jpg',
+    },
   ];
+  
   
   try {
     await Package.deleteMany(); // Clear existing data
